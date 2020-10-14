@@ -7,11 +7,16 @@ import Footer from './components/Footer/Footer';
 
 
 class App extends React.Component {
+
+  state = {
+    rocket: 'Falcon 1'
+  }
+
   render() {
     return (
       <>      
         <Header />
-        <Main />
+        <Main rocket={this.state.rocket} />
         <Features />
         <Footer />
       </>
