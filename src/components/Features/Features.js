@@ -2,7 +2,7 @@ import React from 'react';
 import RellaxWrapper from 'react-rellax-wrapper';
 import './features.css';
 
-const Features = ({name, height, diameter, mass, payload_weights, description}) => (
+const Features = ({name, height, diameter, mass, payload_weights: payloadWeights, description}) => (
 	<section className="features">
 		<h2 className="features-title">
 			{name} <br/>Overview
@@ -28,14 +28,18 @@ const Features = ({name, height, diameter, mass, payload_weights, description}) 
 							{mass.kg.toLocaleString()} kg / {mass.lb.toLocaleString()} lb
 						</td>
 					</tr>
-					<tr>
-						<td className="table-column">PAYLOAD TO LEO</td>
-						<td className="table-column">
-							{payload_weights.find(weight => weight.id === 'leo').kg} kg
-							&nbsp;/&nbsp;
-							{payload_weights.find(weight => weight.id === 'leo').lb} lb
-						</td>
-					</tr>
+					{
+						payloadWeights.map(payload => (
+							<tr key={payload.id}>
+								<td className="table-column">PAYLOAD TO {payload.id.toUpperCase()}</td>
+								<td className="table-column">
+									{payload.kg} kg
+									&nbsp;/&nbsp;
+									{payload.lb} lb
+								</td>
+							</tr>
+						))
+					}
 				</thead>
 			</table>
             <RellaxWrapper speed={14}>
