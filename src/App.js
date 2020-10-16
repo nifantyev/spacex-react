@@ -45,12 +45,11 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <>      
         <Header rockets={this.state.rockets} changeRocket={this.changeRocket} />
         <Main rocket={this.state.rocket} />
-        <Features features={this.state.rocketFeatures} />
+        {this.state.rocketFeatures && <Features {...this.state.rocketFeatures} />}
         <Footer company={this.state.company} />
       </>
     );  
